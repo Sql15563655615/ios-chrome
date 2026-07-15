@@ -1,0 +1,68 @@
+# Chromium 72 iOS 9.3 ARMv7 bring-up arguments.
+# Compatibility tags:
+#   supported in chromium72 - known GN arg in Chromium 72 or standard build config.
+#   requires patch - desired for this port but expected to need Chromium 72 patching.
+#   unsupported - do not keep in this file; document removals in docs/gn-compatibility.md.
+
+# supported in chromium72: cross-compile for iOS.
+target_os = "ios"
+
+# supported in chromium72: ARM32 target, not ARM64.
+target_cpu = "arm"
+
+# supported in chromium72: select ARMv7 code generation in build/config/arm.gni.
+arm_version = 7
+
+# supported in chromium72: iOS minimum deployment version used by iOS toolchain files.
+ios_deployment_target = "9.3"
+
+# supported in chromium72: release-style low-overhead build for feasibility checks.
+is_debug = false
+
+# supported in chromium72: static/non-component build avoids dynamic library pressure on iOS 9.
+is_component_build = false
+
+# supported in chromium72: keep branding generic Chromium.
+is_chrome_branded = false
+
+# supported in chromium72: reduce binary and link memory footprint.
+symbol_level = 0
+
+# supported in chromium72: reduce Blink debug symbol output.
+blink_symbol_level = 0
+
+# supported in chromium72: speed up large Chromium 72 builds once compilation starts.
+use_jumbo_build = true
+
+# supported in chromium72: Native Client is not needed on iOS.
+enable_nacl = false
+
+# supported in chromium72: extensions are outside the CEF Lite target.
+enable_extensions = false
+
+# supported in chromium72: printing is outside the CEF Lite target.
+enable_printing = false
+
+# supported in chromium72: PDF viewer is outside the CEF Lite target.
+enable_pdf = false
+
+# supported in chromium72: WebRTC is disabled for memory and dependency reduction.
+enable_webrtc = false
+
+# supported in chromium72: avoid proprietary codec dependencies in the initial port.
+proprietary_codecs = false
+
+# supported in chromium72: use the open Chromium FFmpeg configuration.
+ffmpeg_branding = "Chromium"
+
+# supported in chromium72: build V8 for ARM32.
+v8_target_cpu = "arm"
+
+# supported in chromium72: reduce ICU/data surface for the first feasibility pass.
+v8_enable_i18n_support = false
+
+# supported in chromium72: avoid external V8 startup data packaging complexity initially.
+v8_use_external_startup_data = false
+
+# requires patch: Chromium 72 iOS assumes newer supported targets in parts of build/config.
+# See patches/build/0001-enable-armv7-ios.patch.

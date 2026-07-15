@@ -1,0 +1,15 @@
+name: Stage 1 Validation
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  validate-stage1:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Bootstrap skeleton
+        run: scripts/bootstrap_stage1.sh
+      - name: Validate skeleton and GN args
+        run: scripts/validate_stage1.sh

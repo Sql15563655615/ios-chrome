@@ -1,0 +1,15 @@
+# Stage 2 patch framework: V8 ARM32 iOS 9 feasibility
+#
+# Target Chromium/V8 files to inspect and patch after source checkout:
+# - v8/BUILD.gn
+#   * Confirm v8_target_cpu="arm" includes ARM backend sources.
+#   * Identify optional WebAssembly and snapshot settings for low-memory builds.
+# - v8/src/arm/*
+#   * Confirm ARM32 backend is buildable with the iOS clang toolchain.
+# - v8/src/base/platform/platform-posix.cc and iOS-specific platform files
+#   * Inspect executable memory allocation and JIT policy assumptions.
+# - v8/include/v8-version.h
+#   * Record exact V8 version paired with Chromium 72 checkout.
+#
+# This is a framework-only patch for Stage 2. Replace with git-apply hunks after
+# Chromium 72 is checked out and exact line numbers are verified.

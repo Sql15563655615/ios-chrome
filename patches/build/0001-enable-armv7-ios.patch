@@ -1,0 +1,15 @@
+# Stage 2 patch framework: enable ARMv7 iOS in Chromium 72 build config
+#
+# Target Chromium files to inspect and patch after source checkout:
+# - build/config/arm.gni
+#   * Verify arm_version accepts 7 for target_os="ios" and target_cpu="arm".
+#   * Ensure ARMv7 compiler flags do not assume Linux/Android-only paths.
+# - build/config/compiler/BUILD.gn
+#   * Check clang target triples and minimum iOS deployment flags.
+#   * Remove any hard ARM64-only assumptions in iOS compiler config.
+# - ios/build/config.gni
+#   * Verify iOS 9.3 deployment target handling.
+#   * Identify places that reject 32-bit device builds.
+#
+# This is a framework-only patch for Stage 2. Replace with git-apply hunks after
+# Chromium 72 is checked out and the exact line numbers are verified.

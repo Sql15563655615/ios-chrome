@@ -1,0 +1,5 @@
+# Stage 1 placeholder patch
+#
+# Purpose: 0005-low-memory-blink
+# Status: planned. Replace with a real Chromium 72 git-apply patch after source checkout.
+# Validation: scripts/validate_stage1.sh verifies naming and presence only during stage 1.

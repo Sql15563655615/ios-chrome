@@ -7,6 +7,9 @@
 # supported in chromium72: cross-compile for iOS.
 target_os = "ios"
 
+# supported in chromium72: Chromium 72 iOS GN requires macOS/Xcode host tooling.
+use_system_xcode = true
+
 # supported in chromium72: ARM32 target, not ARM64.
 target_cpu = "arm"
 

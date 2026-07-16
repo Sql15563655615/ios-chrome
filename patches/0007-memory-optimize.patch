@@ -1,0 +1,45 @@
+Chromium: 72.0.3626.122
+Commit: 029c7e1925ccccf13fcec39dd99d49946835ec28
+
+diff --git a/chromium/src/content/public/common/content_switches.cc b/chromium/src/content/public/common/content_switches.cc
+index 245a4e372b..68ab2e6ed9 100644
+--- a/chromium/src/content/public/common/content_switches.cc
++++ b/chromium/src/content/public/common/content_switches.cc
+@@ -1057,6 +1057,9 @@ const char kIpcDumpDirectory[] = "ipc-dump-directory";
+ const char kIpcFuzzerTestcase[] = "ipc-fuzzer-testcase";
+ #endif
+ 
++// Enables conservative defaults for the 512MB iPod touch 5 feasibility target.
++const char kIpodTouch5MemoryMode[] = "ipod-touch5-memory-mode";
++
+ // Don't dump stuff here, follow the same order as the header.
+ 
+ }  // namespace switches
+diff --git a/chromium/src/content/public/common/content_switches.h b/chromium/src/content/public/common/content_switches.h
+index 2888810b4f..a6af23b42f 100644
+--- a/chromium/src/content/public/common/content_switches.h
++++ b/chromium/src/content/public/common/content_switches.h
+@@ -301,6 +301,8 @@ extern const char kIpcDumpDirectory[];
+ extern const char kIpcFuzzerTestcase[];
+ #endif
+ 
++CONTENT_EXPORT extern const char kIpodTouch5MemoryMode[];
++
+ // DON'T ADD RANDOM STUFF HERE. Put it in the main section above in
+ // alphabetical order, or in one of the ifdefs (also in order in each section).
+ 
+diff --git a/chromium/src/third_party/blink/renderer/platform/runtime_enabled_features.json5 b/chromium/src/third_party/blink/renderer/platform/runtime_enabled_features.json5
+index f4f07c4f51..e5b8ea2623 100644
+--- a/chromium/src/third_party/blink/renderer/platform/runtime_enabled_features.json5
++++ b/chromium/src/third_party/blink/renderer/platform/runtime_enabled_features.json5
+@@ -66,6 +66,10 @@
+   },
+ 
+   data: [
++    {
++      name: "iOSArmv7LowMemoryMode",
++      status: "stable",
++    },
+     {
+       name: "Accelerated2dCanvas",
+       settable_from_internals: true,

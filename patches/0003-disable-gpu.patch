@@ -1,0 +1,43 @@
+Chromium: 72.0.3626.122
+Commit: 029c7e1925ccccf13fcec39dd99d49946835ec28
+
+diff --git a/chromium/src/content/gpu/BUILD.gn b/chromium/src/content/gpu/BUILD.gn
+index d9d707b1a9..5da4eb5f3e 100644
+--- a/chromium/src/content/gpu/BUILD.gn
++++ b/chromium/src/content/gpu/BUILD.gn
+@@ -8,11 +8,19 @@ import("//gpu/vulkan/features.gni")
+ import("//media/media_options.gni")
+ import("//ui/ozone/ozone.gni")
+ 
++declare_args() {
++  # iPod touch 5 / Apple A5 feasibility mode: omit the out-of-process GPU
++  # target from iOS ARMv7 builds and force software compositing paths above it.
++  disable_ios_armv7_gpu_process = is_ios && target_cpu == "arm"
++}
++
+ # See //content/BUILD.gn for how this works.
+ group("gpu") {
+   visibility = [ "//content/*" ]  # This is an internal content API.
+ 
+-  if (is_component_build) {
++  if (disable_ios_armv7_gpu_process) {
++    public_deps = []
++  } else if (is_component_build) {
+     public_deps = [
+       "//content",
+     ]
+diff --git a/chromium/src/gpu/skia_bindings/BUILD.gn b/chromium/src/gpu/skia_bindings/BUILD.gn
+index e9116a6f8b..b6e6738f9f 100644
+--- a/chromium/src/gpu/skia_bindings/BUILD.gn
++++ b/chromium/src/gpu/skia_bindings/BUILD.gn
+@@ -2,6 +2,10 @@
+ # Use of this source code is governed by a BSD-style license that can be
+ # found in the LICENSE file.
+ 
++declare_args() {
++  disable_ios_armv7_skia_gpu_backend = is_ios && target_cpu == "arm"
++}
++
+ source_set("skia_bindings") {
+   sources = [
+     "gl_bindings_skia_cmd_buffer.cc",

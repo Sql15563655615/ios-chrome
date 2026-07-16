@@ -9,6 +9,11 @@ struct AppSettings {
   bool disable_gpu = true;
 };
 
+bool CefInitialize(const AppSettings& settings);
+void CefShutdown();
+bool CefIsInitialized();
+const AppSettings& CefGetSettings();
+
 class App {
  public:
   virtual ~App() = default;

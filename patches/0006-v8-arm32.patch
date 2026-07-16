@@ -1,0 +1,29 @@
+Chromium: 72.0.3626.122
+Commit: 029c7e1925ccccf13fcec39dd99d49946835ec28
+
+diff --git a/chromium/src/v8/BUILD.gn b/chromium/src/v8/BUILD.gn
+--- a/chromium/src/v8/BUILD.gn
++++ b/chromium/src/v8/BUILD.gn
+@@ -44,7 +44,7 @@
+   # Lite mode disables a number of performance optimizations to reduce memory
+   # at the cost of performance.
+   # Sets --DV8_LITE_MODE.
+-  v8_enable_lite_mode = false
++  v8_enable_lite_mode = v8_disable_modern_sandbox_for_ios_armv7
+ 
+   # Sets -DVERIFY_HEAP.
+   v8_enable_verify_heap = ""
+diff --git a/chromium/src/v8/gni/v8.gni b/chromium/src/v8/gni/v8.gni
+--- a/chromium/src/v8/gni/v8.gni
++++ b/chromium/src/v8/gni/v8.gni
+@@ -8,6 +8,10 @@
+ import("//build/split_static_library.gni")
+ 
+ declare_args() {
++  # Chromium 72 ARM32 iOS keeps V8 in a non-pointer-compressed, non-sandboxed
++  # configuration for 32-bit iOS 9.3 feasibility.
++  v8_disable_modern_sandbox_for_ios_armv7 = target_os == "ios" && target_cpu == "arm"
++
+   # Set flags for tracking code coverage. Uses gcov with gcc and sanitizer
+   # coverage with clang.
+   v8_code_coverage = false

@@ -1,0 +1,33 @@
+Chromium: 72.0.3626.122
+Commit: 029c7e1925ccccf13fcec39dd99d49946835ec28
+
+diff --git a/chromium/src/media/BUILD.gn b/chromium/src/media/BUILD.gn
+index b4b5298e61..ba96354ff2 100644
+--- a/chromium/src/media/BUILD.gn
++++ b/chromium/src/media/BUILD.gn
+@@ -11,7 +11,11 @@ import("//build/config/ui.gni")
+ import("//media/media_options.gni")
+ import("//testing/libfuzzer/fuzzer_test.gni")
+ import("//testing/test.gni")
+-import("//third_party/ffmpeg/ffmpeg_options.gni")
++if (media_use_ffmpeg) {
++  import("//third_party/ffmpeg/ffmpeg_options.gni")
++} else {
++  enable_ffmpeg_video_decoders = false
++}
+ 
+ buildflag_header("media_buildflags") {
+   header = "media_buildflags.h"
+diff --git a/chromium/src/media/cast/BUILD.gn b/chromium/src/media/cast/BUILD.gn
+index 964d1c9024..003099082d 100644
+--- a/chromium/src/media/cast/BUILD.gn
++++ b/chromium/src/media/cast/BUILD.gn
+@@ -277,7 +277,7 @@ static_library("test_support") {
+   # TODO(miu): There *are* hardware decoder APIs available via FFMPEG, and we
+   # should use those for the Android receiver.  See media's BUILD.gn for usage
+   # details.  http://crbug.com/558714
+-  if (!is_android && !is_chromecast) {
++  if (media_use_ffmpeg && !is_android && !is_chromecast) {
+     sources += [
+       "test/fake_media_source.cc",
+       "test/fake_media_source.h",

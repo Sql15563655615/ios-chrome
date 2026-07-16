@@ -1,0 +1,22 @@
+Chromium: 72.0.3626.122
+Commit: 029c7e1925ccccf13fcec39dd99d49946835ec28
+
+diff --git a/chromium/src/media/media_options.gni b/chromium/src/media/media_options.gni
+index 46eaa58181..41fb8a6d7b 100644
+--- a/chromium/src/media/media_options.gni
++++ b/chromium/src/media/media_options.gni
+@@ -47,6 +47,14 @@ declare_args() {
+     media_use_libvpx = false
+   }
+ 
++  # iOS ARMv7 CEF Lite does not expose MediaStream, PeerConnection, or WebRTC.
++  disable_ios_armv7_webrtc = is_ios && target_cpu == "arm"
++
++  if (disable_ios_armv7_webrtc) {
++    enable_media_remoting = false
++    enable_media_remoting_rpc = false
++  }
++
+   # Override to dynamically link the cras (ChromeOS audio) library.
+   use_cras = false
+ 

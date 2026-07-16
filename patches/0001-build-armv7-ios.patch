@@ -1,0 +1,66 @@
+Chromium: 72.0.3626.122
+Commit: 029c7e1925ccccf13fcec39dd99d49946835ec28
+
+diff --git a/chromium/src/build/config/arm.gni b/chromium/src/build/config/arm.gni
+index 29434eba92..018b6aa645 100644
+--- a/chromium/src/build/config/arm.gni
++++ b/chromium/src/build/config/arm.gni
+@@ -79,7 +79,9 @@ if (current_cpu == "arm" || v8_current_cpu == "arm") {
+     }
+ 
+     if (arm_float_abi == "") {
+-      if (current_os == "android" || target_os == "android") {
++      if (current_os == "ios" || target_os == "ios") {
++        arm_float_abi = "softfp"
++      } else if (current_os == "android" || target_os == "android") {
+         arm_float_abi = "softfp"
+       } else if (current_os == "linux" && target_cpu != v8_target_cpu) {
+         # Default to the same as Android for V8 simulator builds.
+@@ -90,7 +92,9 @@ if (current_cpu == "arm" || v8_current_cpu == "arm") {
+     }
+ 
+     if (arm_fpu == "") {
+-      if (arm_use_neon) {
++      if (current_os == "ios" || target_os == "ios") {
++        arm_fpu = "neon"
++      } else if (arm_use_neon) {
+         arm_fpu = "neon"
+       } else {
+         arm_fpu = "vfpv3-d16"
+@@ -105,7 +109,9 @@ if (current_cpu == "arm" || v8_current_cpu == "arm") {
+     }
+ 
+     if (arm_float_abi == "") {
+-      if (current_os == "android" || target_os == "android") {
++      if (current_os == "ios" || target_os == "ios") {
++        arm_float_abi = "softfp"
++      } else if (current_os == "android" || target_os == "android") {
+         arm_float_abi = "softfp"
+       } else {
+         arm_float_abi = "hard"
+@@ -113,7 +119,9 @@ if (current_cpu == "arm" || v8_current_cpu == "arm") {
+     }
+ 
+     if (arm_fpu == "") {
+-      if (arm_use_neon) {
++      if (current_os == "ios" || target_os == "ios") {
++        arm_fpu = "neon"
++      } else if (arm_use_neon) {
+         arm_fpu = "neon"
+       } else {
+         arm_fpu = "vfpv3-d16"
+diff --git a/chromium/src/ios/build/config.gni b/chromium/src/ios/build/config.gni
+index b61919f895..87739c4080 100644
+--- a/chromium/src/ios/build/config.gni
++++ b/chromium/src/ios/build/config.gni
+@@ -17,6 +17,10 @@ _ios_conceptually_bad_dependencies = [
+   "//third_party/webrtc:webrtc",
+ ]
+ 
++# Chromium 72 removed production iOS ARMv7 support upstream. This port restores
++# ARMv7 as an explicitly supported feasibility target for iOS 9.3 devices.
++ios_enable_armv7 = target_cpu == "arm" && ios_deployment_target == "9.3"
++
+ # Global list of conceptually fine dependencies but currently unsupported
+ # on iOS. Exclusions will be removed when the dependencies are fixed.
+ _ios_transient_bad_dependencies = []

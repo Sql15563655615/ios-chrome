@@ -1,0 +1,76 @@
+# Chromium 72 iOS 9.3 ARMv7 minimal args for iPod touch 5 (512MB RAM).
+# Tags:
+#   Chromium72 supported - argument exists in Chromium 72 or standard GN config.
+#   requires patch - argument is introduced or made meaningful by patches/*.patch.
+
+# Chromium72 supported: iOS target build.
+target_os = "ios"
+
+# Chromium72 supported: ARM32 target CPU.
+target_cpu = "arm"
+
+# Chromium72 supported: ARMv7 selection in build/config/arm.gni.
+arm_version = 7
+
+# Chromium72 supported: iOS deployment target for toolchain metadata.
+ios_deployment_target = "9.3"
+
+# Chromium72 supported: use macOS host Xcode tooling as a boolean.
+use_system_xcode = true
+
+# Chromium72 supported: release-style low-memory build shape.
+is_debug = false
+
+# Chromium72 supported: static build avoids component dylib overhead.
+is_component_build = false
+
+# Chromium72 supported: reduce debug symbol footprint.
+symbol_level = 0
+blink_symbol_level = 0
+
+# Chromium72 supported: Native Client is not used on iOS.
+enable_nacl = false
+
+# Chromium72 supported: remove extensions surface for CEF Lite.
+enable_extensions = false
+
+# Chromium72 supported: remove printing surface.
+enable_printing = false
+
+# Chromium72 supported: remove PDF viewer surface.
+enable_pdf = false
+
+# Chromium72 supported: remove WebRTC surface.
+enable_webrtc = false
+
+# Chromium72 supported: keep proprietary codecs off.
+proprietary_codecs = false
+
+# Chromium72 supported: iOS media_options.gni sets media_use_ffmpeg=false;
+# keep this explicit for the minimal profile and 0002-disable-ffmpeg.patch.
+media_use_ffmpeg = false
+enable_ffmpeg_video_decoders = false
+
+# Chromium72 supported: iOS media_options.gni sets libvpx off; keep explicit.
+media_use_libvpx = false
+
+# requires patch: 0003-disable-gpu.patch introduces this iOS ARMv7 GPU process cut.
+disable_ios_armv7_gpu_process = true
+
+# requires patch: 0003-disable-gpu.patch introduces this Skia GPU backend cut.
+disable_ios_armv7_skia_gpu_backend = true
+
+# requires patch: 0004-disable-webrtc.patch introduces this CEF Lite WebRTC cut marker.
+disable_ios_armv7_webrtc = true
+
+# requires patch: 0005-ios9-sdk-compat.patch adds overlay SDK support.
+ios_sdk_overlay_path = ""
+
+# requires patch: 0006-v8-arm32.patch adds the V8 ARM32 feasibility marker.
+v8_disable_modern_sandbox_for_ios_armv7 = true
+
+# Chromium72 supported: reduce V8 data/heap surface.
+v8_target_cpu = "arm"
+v8_enable_i18n_support = false
+v8_use_external_startup_data = false
+v8_enable_lite_mode = true

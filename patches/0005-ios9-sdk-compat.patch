@@ -1,0 +1,29 @@
+Chromium: 72.0.3626.122
+Commit: 029c7e1925ccccf13fcec39dd99d49946835ec28
+
+diff --git a/chromium/src/build/config/ios/ios_sdk.gni b/chromium/src/build/config/ios/ios_sdk.gni
+index 5f689e8ff6..4d50e852bd 100644
+--- a/chromium/src/build/config/ios/ios_sdk.gni
++++ b/chromium/src/build/config/ios/ios_sdk.gni
+@@ -30,6 +30,10 @@ declare_args() {
+   # provisioning for the selected code signing identify support that prefix.
+   ios_app_bundle_id_prefix = "org.chromium"
+ 
++  # Optional overlay SDK used by the iOS 9.3 ARMv7 port. This leaves the Xcode
++  # SDK immutable while allowing the port to point GN at Chromium-iPhoneOS9.3.sdk.
++  ios_sdk_overlay_path = ""
++
+   # If true, then allow using Xcode to automatically manage certificates. This
+   # requires loading a separate Xcode project and enable automatically managed
+   # certificates. When true, all test application will use the same bundle id
+@@ -78,6 +82,10 @@ if (additional_target_cpus != []) {
+   }
+ }
+ 
++if (ios_sdk_overlay_path != "") {
++  ios_sdk_path = ios_sdk_overlay_path
++}
++
+ if (ios_sdk_path == "") {
+   # Compute default target.
+   if (use_ios_simulator) {

@@ -177,6 +177,57 @@ Stage 4.4 focuses on Chromium 72 patch impact auditing rather than build executi
 - Ninja build.
 - macOS validation.
 
+## Stage 4.5 status
+
+Stage 4.5 focuses on BUILD graph and target reachability auditing rather than build execution.
+
+### Completed
+
+- BUILD graph audit documentation.
+- Patch reachability classification.
+- Target impact mapping.
+- `scripts/verify_patch_targets.sh --graph` support.
+
+### Current completion
+
+- The Stage 4-pre patch series now has a build-graph reachability layer on top of the Stage 4.4 patch impact audit.
+
+### Still pending
+
+- GN generation.
+- Ninja build.
+- macOS validation.
+- Chromium source modification.
+- Chromium runtime integration.
+
+Stage 4.4 focuses on Chromium 72 patch impact auditing rather than build execution.
+
+### Completed
+
+- Patch impact audit documentation for the Stage 4-pre series.
+- Patch dependency graph documentation.
+- Patch coverage audit documentation.
+- CEF Lite implementation correspondence audit.
+- Patch-target verification script.
+
+### Current completion
+
+- The repository now has audit coverage for the Stage 4-pre patch series and the local CEF Lite API surface.
+
+### Still pending
+
+- GN generation.
+- Ninja build.
+- macOS validation.
+- Chromium source modification.
+- Chromium runtime integration.
+
+### Explicitly not entered yet
+
+- GN generation.
+- Ninja build.
+- macOS validation.
+
 ## Stage 1 build/check workflow
 
 ```bash

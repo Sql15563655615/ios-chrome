@@ -18,7 +18,8 @@ This document tracks the Stage 2 review of `build/args/ios9_armv7.gn`. The file 
 | `use_jumbo_build` | supported in chromium72 | Chromium 72 era jumbo build flag. |
 | `enable_nacl` | supported in chromium72 | Disables Native Client. |
 | `enable_extensions` | supported in chromium72 | Disables extension support where honored. |
-| `enable_printing` | supported in chromium72 | Disables printing targets/features where honored. |
+| `enable_basic_printing` | supported in chromium72 | Disables basic printing targets/features where honored. |
+| `enable_print_preview` | supported in chromium72 | Disables print preview targets/features where honored. |
 | `enable_pdf` | supported in chromium72 | Disables PDF viewer/plugin targets where honored. |
 | `enable_webrtc` | supported in chromium72 | Disables WebRTC targets/features where honored. |
 | `proprietary_codecs` | supported in chromium72 | Standard media codec switch. |

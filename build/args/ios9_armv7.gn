@@ -44,7 +44,8 @@ enable_nacl = false
 enable_extensions = false
 
 # supported in chromium72: printing is outside the CEF Lite target.
-enable_printing = false
+enable_basic_printing = false
+enable_print_preview = false
 
 # supported in chromium72: PDF viewer is outside the CEF Lite target.
 enable_pdf = false

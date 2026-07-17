@@ -4,6 +4,8 @@ This repository is a staged open-source porting workspace for a lightweight Chro
 
 > **Stage 1 status:** this repo intentionally does **not** vendor or download full Chromium yet. It provides the project layout, GN argument seed, patch plan, SDK compatibility overlay layout, build scripts, and CI skeleton. Chromium source checkout starts only after maintainer confirmation.
 
+##声明:xxx-new文件为源文件的新版，一般可直接替换
+
 ## Goal
 
 Run a minimal browser stack on:

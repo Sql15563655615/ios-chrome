@@ -34,8 +34,9 @@ enable_nacl = false
 # Chromium72 supported: remove extensions surface for CEF Lite.
 enable_extensions = false
 
-# Chromium72 supported: remove printing surface.
-enable_printing = false
+# Chromium72 supported: disable the basic printing surface used in 72.
+enable_basic_printing = false
+enable_print_preview = false
 
 # Chromium72 supported: remove PDF viewer surface.
 enable_pdf = false

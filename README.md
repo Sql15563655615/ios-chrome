@@ -147,6 +147,36 @@ Its purpose is to display Chromium-rendered content through UIKit and forward to
 5. **Add CEF Lite** — add minimal browser API and host abstraction.
 6. **Add iOS UIKit Shell** — add Objective-C++ UIKit shell files.
 
+## Stage 4.4 status
+
+Stage 4.4 focuses on Chromium 72 patch impact auditing rather than build execution.
+
+### Completed
+
+- Patch impact audit documentation for the Stage 4-pre series.
+- Patch dependency graph documentation.
+- Patch coverage audit documentation.
+- CEF Lite implementation correspondence audit.
+- Patch-target verification script.
+
+### Current completion
+
+- The repository now has audit coverage for the Stage 4-pre patch series and the local CEF Lite API surface.
+
+### Still pending
+
+- GN generation.
+- Ninja build.
+- macOS validation.
+- Chromium source modification.
+- Chromium runtime integration.
+
+### Explicitly not entered yet
+
+- GN generation.
+- Ninja build.
+- macOS validation.
+
 ## Stage 1 build/check workflow
 
 ```bash

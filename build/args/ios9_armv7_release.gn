@@ -1,0 +1,53 @@
+# Chromium 72 iOS 9.3 ARMv7 release-first-compile args.
+#
+# This file is the first compilation profile after the compatibility audit.
+# It keeps only Chromium 72 GN args and the patch-gated knobs needed for the
+# ARMv7/iOS 9.3 low-memory bring-up.
+
+# Cross-compile target.
+target_os = "ios"
+target_cpu = "arm"
+arm_version = 7
+ios_deployment_target = "9.3"
+use_system_xcode = true
+
+# Release-style low-memory shape.
+is_debug = false
+is_component_build = false
+is_chrome_branded = false
+use_jumbo_build = true
+symbol_level = 0
+blink_symbol_level = 0
+
+# Baseline platform exclusions.
+enable_nacl = false
+enable_extensions = false
+# Chromium 72 exposes printing through enable_basic_printing / enable_print_preview.
+enable_basic_printing = false
+enable_print_preview = false
+enable_pdf = false
+enable_webrtc = false
+proprietary_codecs = false
+ffmpeg_branding = "Chromium"
+
+# Media trim for iOS 9.3 / first compile.
+media_use_ffmpeg = false
+enable_ffmpeg_video_decoders = false
+media_use_libvpx = false
+
+# V8 / memory trim.
+v8_target_cpu = "arm"
+v8_enable_i18n_support = false
+v8_use_external_startup_data = false
+# requires patch: 0006-v8-arm32.patch changes the V8 lite-mode gate for the
+# ARMv7/iOS sandbox feasibility path.
+v8_enable_lite_mode = true
+
+# Patch-gated bring-up knobs.
+# These names are intentionally retained here because Stage 4 patches are
+# expected to teach Chromium 72 about them.
+disable_ios_armv7_gpu_process = true
+disable_ios_armv7_skia_gpu_backend = true
+disable_ios_armv7_webrtc = true
+ios_sdk_overlay_path = ""
+v8_disable_modern_sandbox_for_ios_armv7 = true
